@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sleep Tracker</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- Include Chart.js and plugins -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.1/chart.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation@1.0.2"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns@3.0.0"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-zoom@1.0.1/dist/chartjs-plugin-zoom.min.js"></script>
+</head>
+<body>
+    <div id="container">
+        <div id="topSection">
+            <div id="formContainer">
+                <h1>Sleep Tracker</h1>
+                <form id="sleepForm">
+                    <label for="date">Date:</label>
+                    <input type="date" id="date" name="date" required>
+                    <br>
+                    <label for="hours">Hours Slept:</label>
+                    <input type="number" id="hours" name="hours" step="0.001" required>
+                    <br>
+                    <label for="sleepTime">Time to Fall Asleep (minutes):</label>
+                    <input type="number" id="sleepTime" name="sleepTime" step="0.001" required>
+                    <br>
+                    <label for="quality">Sleep Quality (1-10):</label>
+                    <input type="number" id="quality" name="quality" min="1" max="10" required>
+                    <br>
+                    <label for="wakeups">Number of Wake-ups:</label>
+                    <input type="number" id="wakeups" name="wakeups" required>
+                    <br>
+                    <label for="mood">Morning Mood (1-10):</label>
+                    <input type="number" id="mood" name="mood" min="1" max="10" required>
+                    <br>
+                    <label for="notes">Notes (e.g., activities before bed):</label>
+                    <textarea id="notes" name="notes" rows="3"></textarea>
+                    <br>
+                    <button type="submit">Submit</button>
+                </form>
+            </div>
+            <div id="graphWrapper">
+                <div id="graphContainer">
+                    <div id="toolbar">
+                        <button onclick="setTimeRange('week')">Last Week</button>
+                        <button onclick="setTimeRange('month')">Last Month</button>
+                        <button onclick="setTimeRange('year')">Last Year</button>
+                        <button onclick="setTimeRange('all')">All Time</button>
+                        <button class="download" onclick="downloadImage()">Download Graph</button>
+                        <button class="resetZoom" onclick="resetZoom()">Reset Zoom</button>
+                    </div>
+                    <canvas id="myChart"></canvas>
+                </div>
+                <div id="searchFilterContainer">
+                    <input type="text" id="searchInput" placeholder="Search for dates..">
+                    <div id="sleepDataContainer"></div>
+                </div>
+            </div>
+        </div>
+        <div id="bottomSection">
+            <div id="generalTips">
+                <h2>General Tips for Better Sleep</h2>
+                <ul>
+                    <li>Maintain a consistent sleep schedule: Go to bed and wake up at the same time every day, even on weekends.</li>
+                    <li>Create a relaxing bedtime routine: Engage in calming activities before bed, such as reading or taking a warm bath.</li>
+                    <li>Limit exposure to screens before bed: Avoid electronic devices at least an hour before bedtime.</li>
+                    <li>Create a comfortable sleep environment: Ensure your bedroom is dark, quiet, and cool.</li>
+                    <li>Avoid stimulants and heavy meals before bed: Limit caffeine and nicotine intake in the afternoon and evening.</li>
+                    <li>Exercise regularly: Engage in regular physical activity during the day, but avoid vigorous exercise close to bedtime.</li>
+                    <li>Limit naps: Keep naps short (20-30 minutes) and earlier in the day.</li>
+                    <li>Manage stress and anxiety: Practice stress-reducing techniques such as mindfulness or meditation.</li>
+                    <li>Limit alcohol and avoid sleeping pills: Alcohol can disrupt sleep, and sleeping pills should be used only under guidance.</li>
+                    <li>Seek professional help: Consult a healthcare provider or sleep specialist for persistent insomnia.</li>
+                    <li>Expose yourself to sunlight: Exposure to natural light during the day can help regulate your Circadian Rhythm and improve sleep quality.</li>
+                </ul>
+            </div>
+            <div id="professionalHelp">
+                <h2>When to Seek Professional Help</h2>
+                <p>If you have persistent insomnia, it may be time to seek professional help. Consider consulting a healthcare provider or sleep specialist if you experience any of the following:</p>
+                <ul>
+                    <li>Difficulty falling or staying asleep despite following good sleep hygiene practices.</li>
+                    <li>Daytime fatigue, irritability, or difficulty concentrating.</li>
+                    <li>Regular reliance on sleep aids or alcohol to fall asleep.</li>
+                    <li>Snoring or gasping for air during sleep, which could indicate sleep apnea.</li>
+                    <li>Restless legs syndrome or other conditions that disrupt your sleep.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <script src="scripts.js"></script>
+</body>
+</html>
